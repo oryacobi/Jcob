@@ -64,7 +64,11 @@ When **NOT** to use is?
 
 Dependencies
 ------------
-- .NET Standard 2.0 ([Full dependency table](https://docs.microsoft.com/en-us/dotnet/standard/net-standard#net-implementation-support))
+.NET Standard 2.0 ([Full dependency table](https://docs.microsoft.com/en-us/dotnet/standard/net-standard#net-implementation-support))
+
+License
+-------
+[MIT](../master/LICENSE)
 
 Usage Examples
 --------------
