@@ -53,6 +53,16 @@ namespace OrYacobi.Jcob
             }
         }
 
+        public static byte[] SerializeObject(object value)
+        {
+            return SerializeObject(value, Formatting.Indented, new JsonSerializerSettings());
+        }
+
+        public static byte[] SerializeObject(object value, Formatting formatting)
+        {
+            return SerializeObject(value, formatting, new JsonSerializerSettings());
+        }
+
 
         public static byte[] SerializeObject(object value, Formatting formatting, JsonSerializerSettings settings)
         {
@@ -82,6 +92,11 @@ namespace OrYacobi.Jcob
             {
                 RemoveBinaryDataStream(Thread.CurrentThread.ManagedThreadId);
             }
+        }
+
+        public static T DeserializeObject<T>(byte[] bytes)
+        {
+            return DeserializeObjectFromStream<T>(new MemoryStream(bytes), new JsonSerializerSettings());
         }
 
         public static T DeserializeObject<T>(byte[] bytes, JsonSerializerSettings settings)

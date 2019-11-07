@@ -53,10 +53,7 @@ namespace OrYacobi.Jcob
                 var memoryStream = SerializeFunction(value, out var structure);
                 BinaryAddress address = binaryDataStream.AddData(memoryStream, value.GetType(), structure);
 
-                if (_writeType)
-                {
-                    address.Type = value.GetType();
-                }
+                address.Type = _writeType ? value.GetType() : null;
 
                 var jObject = JObject.FromObject(address, AddressSerializer);
                 jObject.WriteTo(writer);

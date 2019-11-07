@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Text;
 using Newtonsoft.Json;
 
@@ -10,6 +11,26 @@ namespace OrYacobi.Jcob.Play
     {
         static void Main()
         {
+           // ExampleClass originalObject = new ExampleClass();
+
+           //// byte[] jcobBytes = JcobConvert.SerializeObject(originalObject);
+
+           // string jsonString = JsonConvert.SerializeObject(originalObject);
+
+
+           //// ExampleClass deserializedObject = JcobConvert.DeserializeObject<ExampleClass>(jcobBytes);
+
+
+           // ExampleAccord accordExample = new ExampleAccord();
+           // byte[] jcobBytes = JcobConvert.SerializeObject(accordExample);
+           // ExampleAccord deserializedObject = JcobConvert.DeserializeObject<ExampleAccord>(jcobBytes);
+           // File.WriteAllBytes("Jcob.txt", jcobBytes);
+
+
+           // Console.ReadLine();
+
+
+
             var classToSerielze = new List<TestJsonWithBinary>();
             var classToSerielzeNoConverting = new List<TestJsonWithBinary>();
 
@@ -39,7 +60,22 @@ namespace OrYacobi.Jcob.Play
             Console.WriteLine($"{nameof(timeWithoutBinary)}: {timeWithoutBinary}");
             Console.WriteLine($"{nameof(numOfBytesWithoutBinary)}: {numOfBytesWithoutBinary}");
 
+
         }
+
+        public class ExampleClass
+{
+    public string FirstName { get; set; } = "James";
+
+    public string MiddleName { get; set; } = "Batman";
+
+    public string LastName { get; set; } = "Newton-King";
+
+    public int Age { get; set; } = -1;
+
+    [JsonConverter(typeof(JcobConverter))]
+    public double[] ScoresArray { get; set; } = {1.6, 18.03, 3, 9.8, 8.7, 4.989, 48.48, 2.045, 8.68, 343.656, 3.811, 77.2, 0.3091, 798, 0.57628, 6.2, 1.3, 54, 48.622, 70.52, 60.4628};
+}
 
         public class TestJsonWithBinary
         {
