@@ -163,3 +163,7 @@ public class ExampleAccord
     public ContinuousHistogram AccordHistogram { get; set; } = new ContinuousHistogram(new []{1,2,3}, new Range(0,10));
 }
 ```
+
+Performance Tests
+-----------------
+TBD
