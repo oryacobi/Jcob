@@ -55,7 +55,7 @@ namespace OrYacobi.Jcob
 
         public static byte[] SerializeObject(object value)
         {
-            return SerializeObject(value, Formatting.Indented, new JsonSerializerSettings());
+            return SerializeObject(value, Formatting.None, new JsonSerializerSettings());
         }
 
         public static byte[] SerializeObject(object value, Formatting formatting)
