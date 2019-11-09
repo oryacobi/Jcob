@@ -50,28 +50,23 @@ Turns into this Jcob:
 ```
 
 ## When to use it?
----------------
 1. You need to serialize large numeric arrays 
 2. You need to integrate a binary serializer result (or any other binary content) in your Json 
 3. You like to work with the Json structure
 4. You tested other approaches and were disappointed with the results and performance
 
 ## When **NOT** to use is?
------------------------
 1. You are **restriced to a valid Json** format 
 2. You need to be able to see and understand **all** the content in the serialization result
 3. The total amount of binary contant is very small (in this case, consider [this](https://stackoverflow.com/questions/1443158/binary-data-in-json-string-something-better-than-base64))
 
 ## Dependencies
-------------
 .NET Standard 2.0 ([Full dependency table](https://docs.microsoft.com/en-us/dotnet/standard/net-standard#net-implementation-support))
 
 ## License
--------
 [MIT](../master/LICENSE)
 
 ## Usage Examples
---------------
 ```csharp
 static void Main()
 {
@@ -165,7 +160,6 @@ public class ExampleAccord
 ```
 
 ## Performance Tests
------------------
 ### Jcob vs Json
 The test was performed using this [method](../master/OrYacobi.Jcob.Play/Business/PerformanceTests.cs) and this [data structure](../master/OrYacobi.Jcob.Play/Models/TestClass.cs). Is short, we created a class with several numeric arrays, some with a JcobConverter attribute and some without. By changing the number of elements in each array, we were able to determine the binary ratio in the serialization process. 
 
