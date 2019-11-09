@@ -1,6 +1,4 @@
-﻿using Accord;
-using Accord.Math;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace OrYacobi.Jcob.Play.Models
 {

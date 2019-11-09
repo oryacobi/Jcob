@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Accord;
-using Accord.IO;
-using Accord.Math;
 using Newtonsoft.Json;
 using ProtoBuf;
 
@@ -15,8 +12,10 @@ namespace OrYacobi.Jcob.Play.Models
     {
         [ProtoMember(1)]
         public int IntA { get; set; }
+
         [ProtoMember(2)]
         public int IntB { get; set; }
+
         [ProtoMember(3)]
         public int IntC { get; set; }
 
@@ -40,7 +39,6 @@ namespace OrYacobi.Jcob.Play.Models
 
         public TestClass()
         {
-
         }
 
         public TestClass(int numberOfElements, double binaryRatio)
@@ -61,7 +59,7 @@ namespace OrYacobi.Jcob.Play.Models
     }
 
     [ProtoContract]
-    public class ArraysPair<T> 
+    public class ArraysPair<T>
     {
         [ProtoMember(1)]
         public T[] NonBinaryArray { get; set; }
@@ -72,12 +70,11 @@ namespace OrYacobi.Jcob.Play.Models
 
         public ArraysPair()
         {
-
         }
 
         public ArraysPair(int numberOfElements, double binaryRatio)
         {
-            int numOfBinaryElements = (int)(numberOfElements * binaryRatio);
+            int numOfBinaryElements = (int) (numberOfElements * binaryRatio);
             int numOfNonBinaryElements = numberOfElements - numOfBinaryElements;
 
             BinaryArray = GetArray(numOfBinaryElements);
@@ -95,27 +92,25 @@ namespace OrYacobi.Jcob.Play.Models
             {
                 for (var index = 0; index < result.Length; index++)
                 {
-                        MethodInfo method = typeof(ArraysPair<T>).GetMethod("GetPrimitiveArray");
+                    MethodInfo method = typeof(ArraysPair<T>).GetMethod("GetPrimitiveArray");
                     if (method != null)
                     {
                         MethodInfo genericMethod = method.MakeGenericMethod(baseType);
-                        result[index] =  genericMethod.Invoke(null, new object[] { numberOfElements });
+                        result[index] = genericMethod.Invoke(null, new object[] {numberOfElements});
                         continue;
                     }
+
                     throw new FormatException("Could not find Accord's 'Load' method");
                 }
 
-               return result.Cast<T>().ToArray();
+                return result.Cast<T>().ToArray();
             }
+
             return GetPrimitiveArray<T>(numberOfElements);
         }
 
-        static readonly Dictionary<Type, dynamic>  ValueSteps = new Dictionary<Type, dynamic>
-        {
-            {typeof(double), 0.1649582384 },
-            {typeof(float), -0.162384f },
-            {typeof(int), 3 },
-        };
+        // ReSharper disable once StaticMemberInGenericType
+        static readonly Dictionary<Type, dynamic> ValueSteps = new Dictionary<Type, dynamic> {{typeof(double), 0.1649582384}, {typeof(float), -0.162384f}, {typeof(int), 3},};
 
         public static TArray[] GetPrimitiveArray<TArray>(int numberOfElements)
         {
@@ -128,13 +123,7 @@ namespace OrYacobi.Jcob.Play.Models
 
             for (var index = 1; index < result.Length; index++)
             {
-                //MethodInfo mi = type.GetMethod("op_Addition",
-                //    BindingFlags.Static | BindingFlags.Public);
-
-                //if(mi == null) throw new FormatException();
-
                 result[index] = result[index - 1] + ValueSteps[type];
-                //result[index] =  mi.Invoke(null, new [] { result[index - 1], ValueSteps[type]});
             }
 
             return result.Cast<TArray>().ToArray();

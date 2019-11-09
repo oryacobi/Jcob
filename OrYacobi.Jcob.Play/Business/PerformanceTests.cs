@@ -35,7 +35,7 @@ namespace OrYacobi.Jcob.Play.Business
                         switch (serializationConfig)
                         {
                             case SerializationConfig.Json:
-                                serializedString =JsonConvert.SerializeObject(testClass);
+                                serializedString = JsonConvert.SerializeObject(testClass);
                                 break;
                             case SerializationConfig.Jcob:
                                 serializedBytes = JcobConvert.SerializeObject(testClass);
@@ -56,8 +56,12 @@ namespace OrYacobi.Jcob.Play.Business
                     }
 
                     performanceResult.Size = serializedBytes?.Length ?? -1;
-                     File.WriteAllBytes("SerializedTestClass.txt", serializedBytes);
 
+                    if (serializedBytes == null)
+                    {
+                        throw new FormatException();
+                    }
+                    File.WriteAllBytes("SerializedTestClass.txt", serializedBytes);
 
                     stopwatch.Restart();
                     TestClass deserializedClass = null;
@@ -66,7 +70,7 @@ namespace OrYacobi.Jcob.Play.Business
                         switch (serializationConfig)
                         {
                             case SerializationConfig.Json:
-                                deserializedClass =  JsonConvert.DeserializeObject<TestClass>(serializedString);
+                                deserializedClass = JsonConvert.DeserializeObject<TestClass>(serializedString);
                                 break;
                             case SerializationConfig.Jcob:
                                 deserializedClass = JcobConvert.DeserializeObject<TestClass>(serializedBytes);
@@ -88,7 +92,7 @@ namespace OrYacobi.Jcob.Play.Business
 
                     yield return performanceResult;
 
-                    if(serializationConfig != SerializationConfig.Jcob) break;
+                    if (serializationConfig != SerializationConfig.Jcob) break;
                 }
 
             }
@@ -111,8 +115,6 @@ namespace OrYacobi.Jcob.Play.Business
                 return $"{SerializingConfig} {Iterations} {NumberOfArrayElements} {BinaryDataRatio} {SerializationMs} {DeserializationMs} {TotalMs} {Size}";
             }
         }
-
-     
 
         public enum SerializationConfig
         {
