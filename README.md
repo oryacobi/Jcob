@@ -169,10 +169,11 @@ public class ExampleAccord
 ### Jcob vs Json
 The test was performed using this [method](../master/OrYacobi.Jcob.Play/Business/PerformanceTests.cs) and this [data structure](../master/OrYacobi.Jcob.Play/Models/TestClass.cs). Is short, we created a class with several numeric arrays, some with a JcobConverter attribute and some without. By changing the number of elements in each array, we were able to determine the binary ratio in the serialization process. 
 
-The JcobConverter handles numaric arrays simply by copy the relevant area from memory, directly to the serialization binary content, and in some cases, may reduce the serialization\deserialization time by 90%+ and serialization result size by 50%.
+The JcobConverter handles numaric arrays simply by copy the relevant area from memory, directly to the serialization binary content. In some cases, this approach may reduce the serialization\deserialization time by 90%+ and the size by 50%.
 
 Binary Data Ratio|Serialization (ms)|Deserialization (ms)|Size (bytes)|Serialization Impovement|Deserialization Improvement|Size Improvement
 ------------------|------------------|------------------|------------------|------------------|------------------|------------------|
+Json|3916|3090|70354|NA|NA|NA
 0|4281|3444|70461|-9.32|-11.46|-0.15
 0.1|3827|3047|66668|2.27|1.39|5.24
 0.2|3409|2723|62875|12.95|11.88|10.63
