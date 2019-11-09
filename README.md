@@ -190,7 +190,7 @@ Json|3916|3090|70354|NA|NA|NA
 ### Jcob vs Protobuf-net
 Jcob has a [small performance advantage](../master/Resources/20191109%20Jcob%20Perfotmance%20Tests%20vs%20Json%20and%20Protobuf.xlsx) over Protobuf **only in cases which the binary content ratio is above 90%.** 
 You should consider Jcob as an alternative if:
-1. You need to serialized very large numeric arrays (multidimantional and jagged arrays are supported)
+1. You need to serialize very large numeric arrays (multidimantional and jagged arrays are supported)
 2. You can't (or don't want to) deal with ProtoMember attributes
 3. You need to be able to read\edit manually the non-binary fields of the serialization result
 
